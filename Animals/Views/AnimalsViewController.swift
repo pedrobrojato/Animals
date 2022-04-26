@@ -8,22 +8,46 @@
 import UIKit
 
 class AnimalsViewController: UIViewController {
-
+    
+    let animals = [
+        Animal(name: "Lion", age: 30, color: UIColor.yellow),
+        Animal(name: "Aligator", age: 20, color: UIColor.green)
+    ]
+    
+    private let cellName = "AnimalCell"
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupTableView()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func setupTableView() {
+        let nib = UINib(nibName: cellName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellName)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
-    */
-
 }
+
+extension AnimalsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension AnimalsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! AnimalCell
+        let animal = animals[indexPath.row]
+        cell.config(item: animal)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return animals.count
+    }
+}
+
+

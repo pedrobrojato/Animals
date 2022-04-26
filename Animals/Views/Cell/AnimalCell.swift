@@ -8,16 +8,15 @@
 import UIKit
 
 class AnimalCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var ageLabel: UILabel!
+    
+    func config(item: Animal) {
+        nameLabel.text = "Nome: \(item.name)"
+        ageLabel.text = "Idade: \(item.age)"
+        colorView.backgroundColor = item.color
+        colorView.layer.cornerRadius = 50/2
+    }
 }

@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import UIKit
+
+struct Animal {
+    let name: String
+    let age: Int
+    let color: UIColor
+}
