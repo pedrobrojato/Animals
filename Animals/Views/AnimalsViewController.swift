@@ -11,7 +11,8 @@ class AnimalsViewController: UIViewController {
     
     let animals = [
         Animal(name: "Lion", age: 30, color: UIColor.yellow),
-        Animal(name: "Aligator", age: 20, color: UIColor.green)
+        Animal(name: "Aligator", age: 20, color: UIColor.green),
+        Animal(name: "Fish", age: 9, color: UIColor.black)
     ]
     
     private let cellName = "AnimalCell"
